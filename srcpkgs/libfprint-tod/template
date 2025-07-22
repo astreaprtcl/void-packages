@@ -1,0 +1,27 @@
+# Template file for 'libfprint-tod'
+pkgname=libfprint-tod
+version=1.94.9
+revision=1
+build_style=meson
+build_helper="gir qemu"
+configure_args="-Dudev_rules=disabled -Dgtk-examples=false -Ddoc=false"
+hostmakedepends="pkg-config glib-devel"
+makedepends="libusb-devel nss-devel glib-devel gdk-pixbuf-devel pixman-devel
+ libgusb-devel libglib-devel openssl-devel"
+depends="libfprint-udev-rules>=${version}_${revision}"
+short_desc="Support for consumer fingerprint reader devices"
+maintainer="Enno Boland <gottox@voidlinux.org>"
+license="LGPL-2.1-or-later"
+homepage="http://www.freedesktop.org/wiki/Software/fprint/"
+distfiles="https://gitlab.freedesktop.org/3v1n0/libfprint/-/archive/v${version}+tod1/libfprint-v${version}+tod1.tar.bz2"
+checksum=cbc78637bfb748d09c16b094d95a7c7173f31f7a5bd86e5e3d81beaba8dc37e9
+
+libfprint-tod-devel_package() {
+	depends="${makedepends} ${sourcepkg}>=${version}_${revision}"
+	short_desc+=" - development files"
+	pkg_install() {
+		vmove usr/include
+		vmove usr/lib/pkgconfig
+		vmove "usr/lib/*.so"
+	}
+}
