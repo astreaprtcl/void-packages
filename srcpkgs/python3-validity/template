@@ -1,0 +1,17 @@
+# Template file for 'python3-validity'
+pkgname=python3-validity
+version=0.15
+revision=1
+build_style=python3-pep517
+makedepends="python3-setuptools"
+depends="python3-cryptography python3-usb python3-yaml"
+short_desc="Validity fingerprint sensor prototype"
+maintainer="Astreaprtcl <git@m-woerle.de>"
+license="MIT"
+homepage="https://github.com/uunicorn/python-validity"
+distfiles="https://github.com/uunicorn/python-validity/archive/refs/tags/${version}.tar.gz"
+checksum=dab0567258480285de73fbf19709d75e20e5cabc6624a2dabd6a4ffde60d58c6
+
+post_install() {
+	vlicense LICENSE
+}
