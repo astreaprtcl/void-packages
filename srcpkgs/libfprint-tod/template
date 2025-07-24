@@ -1,14 +1,17 @@
 # Template file for 'libfprint-tod'
 pkgname=libfprint-tod
 version=1.94.9
-revision=1
+revision=2
 build_style=meson
 build_helper="gir qemu"
-configure_args="-Dudev_rules=disabled -Dgtk-examples=false -Ddoc=false"
+configure_args="-Dgtk-examples=false -Ddoc=false"
 hostmakedepends="pkg-config glib-devel"
-makedepends="libusb-devel nss-devel glib-devel gdk-pixbuf-devel pixman-devel
- libgusb-devel libglib-devel openssl-devel"
-depends="libfprint-udev-rules>=${version}_${revision}"
+makedepends="pkg-config glib-devel libusb-devel nss-devel glib-devel gdk-pixbuf-devel pixman-devel
+ libgusb-devel libglib-devel openssl-devel patchelf"
+depends="libfprint-tod-udev-rules>=${version}_${revision}"
+provides="libfprint-${version}_${revision}"
+shlib_provides="libfprint-2-tod.so.1"
+conflicts="libfprint"
 short_desc="Support for consumer fingerprint reader devices"
 maintainer="Enno Boland <gottox@voidlinux.org>"
 license="LGPL-2.1-or-later"
@@ -23,5 +26,14 @@ libfprint-tod-devel_package() {
 		vmove usr/include
 		vmove usr/lib/pkgconfig
 		vmove "usr/lib/*.so"
+	}
+}
+
+libfprint-tod-udev-rules_package() {
+	short_desc+=" - udev rules"
+	conflicts="libfprint<=1.0_1"
+	pkg_install() {
+		vmkdir usr/lib/udev/rules.d
+		vinstall $FILESDIR/60-fprint-autosuspend.rules 644 usr/lib/udev/rules.d
 	}
 }
