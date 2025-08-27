@@ -1,6 +1,6 @@
 # Template file for 'darkly'
 pkgname=darkly
-version=0.5.21
+version=0.5.22
 revision=2
 archs="x86_64"
 build_style=cmake
@@ -23,7 +23,7 @@ maintainer="Astreaprtcl <git@m-woerle.de>"
 license="GPL-2.0-or-later"
 homepage="https://github.com/Bali10050/Darkly"
 distfiles="https://github.com/Bali10050/Darkly/archive/refs/tags/v${version}.tar.gz>darkly.tar.gz"
-checksum=bf3bd01d078850101182a7147e92300880ac6b21d5c1f35434d256e72d716524
+checksum=cd6a34ee054dacba6ee8cad15a969dd83d7ab3653eb2665c261d441b21092ace
 
 post_install() {
         vlicense COPYING
