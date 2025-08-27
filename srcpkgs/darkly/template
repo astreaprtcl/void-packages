@@ -26,5 +26,5 @@ distfiles="https://github.com/Bali10050/Darkly/archive/refs/tags/v${version}.tar
 checksum=cd6a34ee054dacba6ee8cad15a969dd83d7ab3653eb2665c261d441b21092ace
 
 post_install() {
-        vlicense COPYING
+	vlicense COPYING
 }
